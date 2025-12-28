@@ -1,6 +1,7 @@
+// server/utils/rsa.js
 import fs from 'fs'
-import path from 'path'
 import crypto from 'crypto'
+import path from 'path'
 
 const privateKey = fs.readFileSync(
   path.resolve('storage/rsa/private.pem'),
