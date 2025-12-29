@@ -18,13 +18,42 @@ yarn install
 
 # bun
 bun install
-```
 
-## Development Server
+Environment Variables
 
-Start the development server on `http://localhost:3000`:
+After cloning this project, copy the example environment file and configure your environment variables:
 
-```bash
+cp .env.example .env
+
+
+Then, open the .env file and update the values as needed, for example:
+
+DB_HOST=localhost
+DB_USER=root
+DB_PASSWORD=your_mysql_password
+DB_NAME=nuxt_rsa_auth
+
+JWT_SECRET=your_super_secret_key
+JWT_EXPIRES=1h
+
+
+Make sure to replace your_mysql_password and your_super_secret_key with your actual database password and a secure JWT secret.
+
+Generate RSA Keys
+
+This project uses RSA encryption for secure password handling. You need to generate your own RSA key pair before running the project:
+
+mkdir -p storage/rsa
+openssl genrsa -out storage/rsa/private.pem 2048
+openssl rsa -in storage/rsa/private.pem -pubout -out storage/rsa/public.pem
+
+
+Important: Never commit your private key (private.pem) to version control.
+
+Development Server
+
+Start the development server on http://localhost:3000:
+
 # npm
 npm run dev
 
@@ -36,13 +65,11 @@ yarn dev
 
 # bun
 bun run dev
-```
 
-## Production
+Production
 
 Build the application for production:
 
-```bash
 # npm
 npm run build
 
@@ -54,11 +81,10 @@ yarn build
 
 # bun
 bun run build
-```
+
 
 Locally preview production build:
 
-```bash
 # npm
 npm run preview
 
@@ -70,6 +96,3 @@ yarn preview
 
 # bun
 bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
