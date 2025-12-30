@@ -36,6 +36,20 @@ DB_NAME=nuxt_rsa_auth
 JWT_SECRET=your_super_secret_key
 JWT_EXPIRES=1h
 
+## MySQL Database Setup
+
+CREATE DATABASE nuxt_rsa_auth;
+USE nuxt_rsa_auth;
+
+CREATE TABLE users (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100),
+  email VARCHAR(100) UNIQUE,
+  password VARCHAR(255),
+  role VARCHAR(20) DEFAULT 'user',
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
 
 Make sure to replace your_mysql_password and your_super_secret_key with your actual database password and a secure JWT secret.
 
